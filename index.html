@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/assets/images/logo.png">
+  <title>QuidQatar Token</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+          },
+          animation: {
+            'bounce-slow': 'bounce 2s linear infinite',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="text-white font-sans">
+
+  <!-- header -->
+  <nav class="bg-gray-800 relative">
+    <div class="max-w-7xl h-16 mx-auto px-2 sm:px-6 lg:px-8 z-10">
+      <div class="relative flex items-center justify-between h-16">
+        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <!-- Mobile menu button-->
+          <button id="toggle-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <!--
+              Icon when menu is closed.
+  
+              Heroicon name: outline/menu
+  
+              Menu open: "hidden", Menu closed: "block"
+            -->
+            <svg id="menu-open" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <!--
+              Icon when menu is open.
+  
+              Heroicon name: outline/x
+  
+              Menu open: "block", Menu closed: "hidden"
+            -->
+            <svg id="menu-close" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+          <div class="flex-shrink-0 flex items-center">
+            <img class="block lg:hidden h-14 w-auto" src="/assets/images/logo.png" alt="Workflow">
+            <img class="hidden lg:block h-14 w-auto" src="/assets/images/logo.png" alt="Workflow">
+            <span class="hidden lg:block w-auto text-2xl font-sans font-bold text-pink-400">SQUID QATAR</span>
+          </div>
+       
+        </div>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+          <div class="hidden sm:block sm:ml-6">
+            <div class="flex space-x-4">
+              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+              <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Dashboard</a>
+  
+              <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Team</a>
+  
+              <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+  
+              <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Calendar</a>
+
+              <button class="hidden lg:block bg-teal-400 px-2 rounded-sm text-gray-900 hover:bg-teal-500 hover:scale-110 hover:rounded-lg transition-all duration-200 ">
+                <a href="http://" target="_blank" rel="noopener noreferrer" class="flex items-start font-semibold">
+                  <img class="h-6 mr-2" src="/assets/images/pancakeswap.png" alt="">
+                  Buy on Pancakeswap
+                </a>
+              </button>
+              <button class="block lg:hidden bg-teal-400 px-2 rounded-lg text-gray-900 hover:bg-teal-500 hover:scale-110 hover:rounded-lg transition-all duration-200 ">
+                <a href="http://" target="_blank" rel="noopener noreferrer" class="flex items-start p-1">
+                  <img class="h-6" src="/assets/images/pancakeswap.png" alt="">
+                </a>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+          <div class="block sm:hidden sm:ml-6">
+            <button class="bg-teal-400 px-2 rounded-lg text-gray-900 hover:bg-teal-500 hover:scale-110 hover:rounded-lg transition-all duration-200 ">
+              <a href="http://" target="_blank" rel="noopener noreferrer" class="flex items-start p-1">
+                <img class="h-6" src="/assets/images/pancakeswap.png" alt="">
+              </a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <div class="sm:hidden bg-gray-800 absolute -top-52 w-full rounded-b-xl ease-out duration-300 -z-10" id="mobile-menu">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+
+        <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Dashboard</a>
+  
+        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
+  
+        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
+  
+        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
+      </div>
+    </div>
+  </nav>
+  <!-- main -->
+  <main class="w-full">
+    <!-- home -->
+    <section class="home relative min-h-screen sm:min-h-[calc(60vh)] sm:h-[calc(60vh)]">
+      <div class="absolute top-0 left-0 -z-20 w-full">
+          <img class="w-full min-h-screen sm:min-h-[calc(60vh)] sm:h-[calc(60vh)] object-cover" src="/assets/images/banner.jpg" alt="">
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-fuchsia-900 bg-opacity-70 w-full h-full py-8 lg:py-12">
+            <div class="max-w-7xl mx-auto w-full h-full flex items-center flex-col justify-end">
+              <img class="sm:w-1/4 w-1/2 animate-bounce animate-bounce-slow" src="assets/images/logo.png" alt="">
+              <h1 class="text-4xl xl:text-6xl font-bold mb-8 text-white drop-shadow-2xl shadow-pink-700">
+                SQUID QATAR
+              </h1>
+              <div class="flex items-center justify-between flex-col sm:flex-row px-2 w-full">
+                <div class="w-full sm:w-1/3 p-2">
+                  <div class="flex flex-row justify-between sm:flex-col items-center bg-gray-900 p-3 lg:p-6 rounded-lg shadow-xl shadow-pink-700 xl:mx-4 w-full">
+                    <div class="text-xs xl:text-xl text-gray-300 font-semibold" >TOTAL SUPPLY</div>
+                    <h3 class="text-4xl xl:text-5xl text-pink-400 font-bold my-4">1</h3>
+                    <span class="text-sm sm:text-xl xl:text-2xl text-pink-400 font-semibold">QUADRILION</span>
+                  </div>
+                </div>
+                <div class="w-full sm:w-1/3 p-2">
+                  <div class="flex flex-row justify-between sm:flex-col items-center bg-gray-900 p-3 lg:p-6 rounded-lg shadow-xl shadow-pink-700 xl:mx-4 w-full">
+                    <div class="text-xs xl:text-xl text-gray-300 font-semibold" >MAX SUPPLY</div>
+                    <h3 class="text-4xl xl:text-5xl text-pink-400 font-bold my-4">700</h3>
+                    <span class="text-sm sm:text-xl xl:text-2xl text-pink-400 font-semibold">TRILLION</span>
+                  </div>
+                </div>
+                <div class="w-full sm:w-1/3 p-2">
+                  <div class="flex flex-row justify-between sm:flex-col items-center bg-gray-900 p-3 lg:p-6 rounded-lg shadow-xl shadow-pink-700 xl:mx-4 w-full">
+                    <div class="text-xs xl:text-xl text-gray-300 font-semibold" >INITIAL BURN</div>
+                    <h3 class="text-4xl xl:text-5xl text-pink-400 font-bold my-4">300</h3>
+                    <span class="text-sm sm:text-xl xl:text-2xl text-pink-400 font-semibold">TRILLION</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    <!-- introduction --> 
+    <section class="introduction w-full px-2 py-6 bg-gray-900">
+      <div class="max-w-7xl mx-auto flex items-start justify-between flex-col sm:flex-row py-12">
+        <div class="w-full sm:w-[calc(50%-4rem)]">
+          <div class="ml-4 relative z-10 inline-block px-1 font-bold uppercase after:absolute after:-bottom-5 after:-right-2 after:-z-10 after:h-2 after:w-[110%] after:-translate-y-2 after:bg-[#521557] after:content-[''] text-2xl sm:text-3xl">
+            Who is Quid Quatar ?
+          </div>
+          <div class="mt-8 px-2 text-2xl font-normal">
+            In the big world of memes, populated by many animals, there is a dog from the future. Aki Inu.
+          </div>
+          <div class="mt-8 px-2 text-2xl font-normal">
+            Aki Inu aims to create an advanced level of dog community.
+            Unlike the other memes, his first ecosystem products will be released immediately.
+    
+            This not only underlines the seriousness of the project but provides immediate utility to the token.
+          </div>
+          <div class="mt-8 px-2 text-2xl font-normal">
+            This not only underlines the seriousness of the project but provides immediate utility to the token.
+          </div>
+        </div>
+        <div class="w-full sm:w-1/2 p-2 mt-4">
+          <img class="w-full rounded-xl" src="/assets/images/squid-game-thumb.jpeg" alt="">
+        </div>
+      </div>
+    </section>
+
+    <!-- feature -->
+    <section class="feature w-full px-2 py-16 bg-[#521557]">
+      <div class="text-center w-full">
+        <div class="relative z-10 inline-block px-1 font-bold uppercase after:absolute after:-bottom-5 after:-right-2 after:-z-10 after:h-2 after:w-[110%] after:-translate-y-2 after:bg-pink-400 after:content-[''] text-2xl sm:text-3xl">
+          Our Value
+        </div>
+      </div>
+      <div class="grid items-stretch grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-12 w-full max-w-7xl mx-auto">
+        <div class="p-8 bg-gray-900 rounded-xl shadow-md">
+          <i class="fa-solid fa-magnifying-glass-dollar text-pink-400 text-4xl mb-4"></i>
+          <div class="font-semibold text-2xl mb-4">Transparency</div>
+          <div class="text-lg">
+            Aki Inu is supported by its community of enthusiasts. We encourage open communication and believe trust, transparency, and community are the 3 pillars to building longevity.
+          </div>
+        </div>
+        <div class="p-8 bg-gray-900 rounded-lg">
+          <i class="fa-solid fa-user-group text-pink-400 text-4xl mb-4"></i>
+          <div class="font-semibold text-2xl mb-4">Community</div>
+          <div class="text-lg">
+            One of the fastest growing and most loved communities in crypto and we believe that only together we are strong. Community is everything and we strives to include everyone.
+          </div>
+        </div>
+        <div class="p-8 bg-gray-900 rounded-lg">
+          <i class="fa-solid fa-shield-halved text-pink-400 text-4xl mb-4"></i>
+          <div class="font-semibold text-2xl mb-4">Trust</div>
+          <div class="text-lg">
+            Full transparency in security efforts. Aki Inu was verified by a third-part audit by Solid Proof finance company, released the KYC before the launch, burned and locked all LP tokens.
+          </div>
+        </div>
+        <div class="p-8 bg-gray-900 rounded-lg">
+          <i class="fa-solid fa-clock text-pink-400 text-4xl mb-4"></i>
+          <div class="font-semibold text-2xl mb-4">Longevity</div>
+          <div class="text-lg">
+            Aki Inu is ready for the long journey. The community is promoting and adopting long-term ecosystem development and foundation in efforts to drive real use cases.
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- road map -->
+    <section class="roadmap w-full px-2 py-16 bg-gray-900">
+      <div class="text-center w-full">
+        <div class="relative z-10 inline-block px-1 font-bold uppercase after:absolute after:-bottom-5 after:-right-2 after:-z-10 after:h-2 after:w-[110%] after:-translate-y-2 after:bg-pink-400 after:content-[''] text-2xl sm:text-3xl">
+          ROAD MAP
+        </div>
+        </div>
+      <div class="w-full max-w-7xl mx-auto flex justify-between items-center">
+        <div class="w-full">
+          <div class="flex flex-col justify-center py-6 lg:py-12">
+            <div class="w-full mx-auto lg:max-w-4xl">
+      
+              <div class="relative">
+      
+                <!-- Vertical middle line-->
+                <div class="absolute hidden w-px h-full transform -translate-x-1/2 bg-fuchsia-500 lg:block left-1/2"></div>
+                <div class="space-y-12 lg:space-y-8">
+                  <!-- Left section -->
+                  <div>
+                    <div class="flex flex-col items-center">
+                      <div class="flex items-center justify-start w-full mx-auto">
+                        <div class="w-full lg:w-1/2 lg:pr-8 lg:text-right">
+                          <h3 class="text-lg font-semibold text-gray-900 dark:text-pink-300 mb-4">Stage 1</h3>
+                          <p class="mb-1 text-base font-normal text-gray-500 dark:text-gray-200">• Website development</p>
+                          <p class="mb-1 text-base font-normal text-gray-500 dark:text-gray-200">• Whitepaper development</p>
+                          <p class="mb-1 text-base font-normal text-gray-500 dark:text-gray-200">• Set up social media</p>
+                          <p class="mb-1 text-base font-normal text-gray-500 dark:text-gray-200">• Smart contract development</p>
+                          <p class="mb-1 text-base font-normal text-gray-500 dark:text-gray-200">• Kyc and audit with Solidproof</p>
+                          <p class="mb-1 text-base font-normal text-gray-500 dark:text-gray-200">• Marketing</p>
+                          <p class="mb-1 text-base font-normal text-gray-500 dark:text-gray-200">• Presale on Uncirypt</p>  
+                        </div>
+                      </div>
+                      <div
+                        class="absolute flex items-center justify-center w-8 h-8 transform -translate-x-1/2 -translate-y-4 bg-pink-500 border-2 border-red-200 rounded-full left-1/2 sm:translate-y-0">
+                        <span class="text-white">1</span>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <!-- Right section -->
+                  <div>
+                    <div class="flex flex-col items-center">
+                      <div class="flex items-center justify-end w-full mx-auto">
+                        <div class="w-full lg:w-1/2 lg:pl-8 lg:text-left"><h3 class="text-lg font-semibold text-gray-900 dark:text-pink-300 mb-4">Stage 2</h3>
+                          <p class="text-base font-normal text-gray-500 dark:text-gray-200">• Aki Swap release</p>
+                          <p class="text-base font-normal text-gray-500 dark:text-gray-200">• CoinMarketcap</p>
+                          <p class="text-base font-normal text-gray-500 dark:text-gray-200">• CoinGecko</p>
+                          <p class="text-base font-normal text-gray-500 dark:text-gray-200">• Huge Marketing</p>
+                          <p class="text-base font-normal text-gray-500 dark:text-gray-200">• Official merchandise store</p>
+                          <p class="text-base font-normal text-gray-500 dark:text-gray-200">• Charity partnership</p>
+                        </div>
+                      </div>
+                      <div
+                        class="absolute flex items-center justify-center w-8 h-8 transform -translate-x-1/2 -translate-y-4 bg-pink-500 border-2 border-red-200 rounded-full left-1/2 sm:translate-y-0">
+                        <span class="text-white">2</span>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <!-- Left section -->
+                  <div>
+                    <div class="flex flex-col items-center">
+                      <div class="flex items-center justify-start w-full mx-auto">
+                        <div class="w-full lg:w-1/2 lg:pr-8 lg:text-right">
+                          <h3 class="text-lg font-semibold text-gray-900 dark:text-pink-300 mb-4">Stage 3</h3>
+                          <p class="text-base font-normal text-gray-500 dark:text-gray-200">• NFT Collection</p>
+                          <p class="text-base font-normal text-gray-500 dark:text-gray-200">• AKI Marketplace</p>
+                          <p class="text-base font-normal text-gray-500 dark:text-gray-200">• Airdrop</p>
+                          <p class="text-base font-normal text-gray-500 dark:text-gray-200">• First CEX</p>
+                          <p class="text-base font-normal text-gray-500 dark:text-gray-200">• Charity partnership</p>
+                        </div>
+                      </div>
+                      <div
+                        class="absolute flex items-center justify-center w-8 h-8 transform -translate-x-1/2 -translate-y-4 bg-pink-500 border-2 border-red-200 rounded-full left-1/2 sm:translate-y-0">
+                        <span class="text-white">3</span>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <!-- Right section -->
+                  <div>
+                    <div class="flex flex-col items-center">
+                      <div class="flex items-center justify-end w-full mx-auto">
+                        <div class="w-full lg:w-1/2 lg:pl-8 lg:text-left">
+                          <h3 class="text-lg font-semibold text-gray-900 dark:text-pink-300 mb-4">Stage 4</h3>
+                          <p class="text-base font-normal text-gray-500 dark:text-gray-200">• Wardogs released</p>
+                          <p class="text-base font-normal text-gray-500 dark:text-gray-200">• Certik audit</p>
+                          <p class="text-base font-normal text-gray-500 dark:text-gray-200">• Second CEX</p>
+                        </div>
+                      </div>
+                      <div
+                        class="absolute flex items-center justify-center w-8 h-8 transform -translate-x-1/2 -translate-y-4 bg-pink-500 border-2 border-red-200 rounded-full left-1/2 sm:translate-y-0">
+                        <span class="text-white">4</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Parnership -->
+    <section class="parnership w-full px-2 py-16 bg-pink-100">
+      <div class="w-full max-w-7xl mx-auto">
+        <div class="ml-4 relative z-10 inline-block px-1 font-bold uppercase after:absolute after:-bottom-5 after:-right-2 after:-z-10 after:h-2 after:w-[110%] after:-translate-y-2 after:bg-pink-400 after:content-[''] text-2xl sm:text-3xl text-gray-900">
+          Partnership
+        </div>
+        <div class="grid items-stretch grid-cols-2 sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-12 w-full">
+          <div class="flex items-center">
+            <img src="/assets/images/coingecko.webp" alt="">
+          </div>
+          <div class="flex items-center">
+            <img src="/assets/images/pancakeswap.webp" alt="">
+          </div>
+          <div class="flex items-center">
+            <img src="/assets/images/bscscan.webp" alt="">
+          </div>
+          <div class="flex items-center">
+            <img src="/assets/images/CMC.webp" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- footer -->
+  <footer class="px-2 py-16 bg-white shadow md:px-6 md:py-8 dark:bg-gray-900">
+    <div class="w-full max-w-7xl mx-auto">
+      <div class="sm:flex sm:items-center sm:justify-between">
+        <a href="https://flowbite.com/" class="flex items-center mb-4 sm:mb-0">
+          <img src="/assets/images/logo.png" class="mr-3 h-12" alt="Flowbite Logo" />
+          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white uppercase">Quid qatar</span>
+        </a>
+        <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
+          <li>
+            <a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
+          </li>
+          <li>
+            <a href="#" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
+          </li>
+          <li>
+            <a href="#" class="mr-4 hover:underline md:mr-6 ">Licensing</a>
+          </li>
+          <li>
+            <a href="#" class="hover:underline">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+      <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="https://flowbite.com/" class="hover:underline">QuidQatar™</a>. All Rights Reserved.
+      </span>
+    </div>
+  </footer>
+  <!-- gsap -->
+  <script src="assets/js/gsap.min.js"></script> 
+  <!-- main-js -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
